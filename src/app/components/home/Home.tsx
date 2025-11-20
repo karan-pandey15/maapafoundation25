@@ -82,7 +82,7 @@ const slides = [
     title: "Clothe with Compassion",
     description:
       "Help us distribute warm clothing to those facing harsh winters. Your support brings comfort and dignity.",
-    image: "/image/secondimage.jpeg",
+    image: "/image/thumbnail.jpeg",
     campaign: "Cloth Donation",
   },
   {

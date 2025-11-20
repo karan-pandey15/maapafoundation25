@@ -133,7 +133,7 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-[#94231E] via-[#B02A1F] to-[#94231E] text-white overflow-hidden">
+      <div className="mt-6 relative bg-gradient-to-br from-[#94231E] via-[#B02A1F] to-[#94231E] text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
             backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,

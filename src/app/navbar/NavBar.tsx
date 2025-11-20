@@ -76,7 +76,7 @@ const Navbar = () => {
         {/* LEFT SIDE (LOGO + DONATE BUTTON ON MOBILE) */}
         <div className="flex items-center gap-3 lg:gap-0">
           {/* LOGO */}
-          <Link href="/donate" aria-label="Maapa Foundation Home">
+          <Link href="/" aria-label="Maapa Foundation Home">
             <div className="hidden lg:block">
               <Logo size="default" />
             </div>
