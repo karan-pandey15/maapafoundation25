@@ -74,7 +74,7 @@ const slides = [
     title: "Feed the Hungry",
     description:
       "Join us in our mission to provide nutritious meals to families in need. Every donation makes a difference.",
-    image: "/image/firstimage.jpeg",
+    image: "/image/food1.jpeg",
     campaign: "Food Donation",
   },
   {
