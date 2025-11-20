@@ -107,9 +107,7 @@ export default function BlogPage() {
     { id: "all", name: "All Stories", icon: BookOpen, color: "#94231E" },
     { id: "blood", name: "Blood Donation", icon: Droplet, color: "#DC2626" },
     { id: "food", name: "Food Donation", icon: UtensilsCrossed, color: "#EA580C" },
-    { id: "cloth", name: "Cloth Donation", icon: Shirt, color: "#0891B2" },
-    { id: "education", name: "Education", icon: BookOpen, color: "#7C3AED" },
-    { id: "health", name: "Healthcare", icon: Heart, color: "#DC2626" }
+    { id: "cloth", name: "Cloth Donation", icon: Shirt, color: "#0891B2" }
   ];
 
   const blogPosts = [
@@ -117,8 +115,9 @@ export default function BlogPage() {
       id: 1,
       title: "Saving Lives, One Drop at a Time: Our Blood Donation Camp Success",
       excerpt: "Last month's blood donation camp collected over 200 units of blood, potentially saving 600 lives. Read about the heroes who made this possible.",
+      content: "Our latest blood donation camp was a tremendous success. We organized the event across multiple locations to maximize participation. With over 200 units of blood collected, we estimate that around 600 lives will be saved. The generosity of our donors and the dedication of our medical team made this possible. Each donation represents hope and a chance at life for someone in need.",
       category: "blood",
-      image: "/image/firstimage.jpeg",
+      image: "/image/blood.jpeg",
       author: "Dr. Priya Sharma",
       date: "Nov 10, 2024",
       readTime: "5 min read",
@@ -127,10 +126,50 @@ export default function BlogPage() {
     },
     {
       id: 2,
+      title: "Blood Donation Marathon: 48-Hour Impact",
+      excerpt: "Breaking records with our intensive blood donation marathon that brought together the community to save lives.",
+      content: "Our 48-hour blood donation marathon was a record-breaking event that brought together thousands of donors from across the region. The event featured medical awareness sessions, live demonstrations of blood collection procedures, and recognition for our most dedicated donors. We collected 350 units of blood in just 48 hours, surpassing all expectations!",
+      category: "blood",
+      image: "/image/blood3.jpeg",
+      author: "Dr. Amit Kumar",
+      date: "Oct 28, 2024",
+      readTime: "7 min read",
+      featured: true,
+      stats: { donations: 350, hours: 48 }
+    },
+    {
+      id: 3,
+      title: "Youth Blood Donor Drive: Inspiring the Next Generation",
+      excerpt: "Our youth blood donor campaign engaged hundreds of young people in life-saving donation.",
+      content: "We organized special campus drives at colleges and universities to encourage young people to donate blood. Over 400 first-time donors participated in this initiative, and many signed up to become regular donors. Youth are crucial to maintaining a sustainable blood supply for our hospitals and clinics.",
+      category: "blood",
+      image: "/image/blood4.jpeg",
+      author: "Dr. Amit Kumar",
+      date: "Oct 15, 2024",
+      readTime: "5 min read",
+      featured: false,
+      stats: { youth_donors: 400, campuses: 5 }
+    },
+    {
+      id: 4,
+      title: "Mobile Blood Donation Unit: Reaching Remote Areas",
+      excerpt: "Our mobile blood donation unit brings life-saving services to areas that need it most.",
+      content: "We launched a mobile blood donation unit to reach remote and rural areas with limited medical facilities. The unit is equipped with all necessary medical equipment and staffed by trained professionals. We've already reached 25 villages and collected over 500 units of blood from these underserved communities.",
+      category: "blood",
+      image: "/image/blood.jpeg",
+      author: "Dr. Priya Sharma",
+      date: "Sep 20, 2024",
+      readTime: "7 min read",
+      featured: false,
+      stats: { villages_visited: 25, units_collected: 500 }
+    },
+    {
+      id: 5,
       title: "Feeding Hope: How We Distributed 5000 Meals This Month",
       excerpt: "Our food distribution drive reached remote communities, providing nutritious meals to families in need during challenging times.",
+      content: "This month, we successfully distributed 5000 meals to families in remote areas. Working with local volunteers and partners, we ensured that every meal was nutritious and prepared with care. Families in need received not just food, but hope and support during these challenging times.",
       category: "food",
-     image: "/image/secondimage.jpeg",
+      image: "/image/food1.jpeg",
       author: "Rahul Verma",
       date: "Nov 8, 2024",
       readTime: "4 min read",
@@ -138,11 +177,51 @@ export default function BlogPage() {
       stats: { meals: 5000, families: 1200 }
     },
     {
-      id: 3,
+      id: 6,
+      title: "Community Kitchen: Serving Fresh Meals Daily",
+      excerpt: "Our community kitchen now operates 7 days a week, serving fresh, hot meals to daily wage workers and homeless individuals.",
+      content: "We launched our community kitchen initiative to provide nutritious meals to the most vulnerable populations in our city. Operating 7 days a week, our kitchen serves approximately 300 hot meals daily. Each meal is prepared fresh with ingredients sourced locally from trusted suppliers.",
+      category: "food",
+      image: "/image/food2.jpeg",
+      author: "Meera Patel",
+      date: "Oct 25, 2024",
+      readTime: "5 min read",
+      featured: false,
+      stats: { meals: 300, daily: "Yes" }
+    },
+    {
+      id: 7,
+      title: "School Nutrition Program: Feeding Young Minds",
+      excerpt: "We launched a school nutrition program providing balanced meals to 400 school children daily.",
+      content: "Children need proper nutrition to learn effectively and develop properly. Our school nutrition program provides balanced meals to 400 students across 8 schools in rural areas. We partner with nutritionists to ensure meals meet daily dietary requirements and support healthy development.",
+      category: "food",
+      image: "/image/food3.jpeg",
+      author: "Neha Gupta",
+      date: "Oct 20, 2024",
+      readTime: "4 min read",
+      featured: false,
+      stats: { students: 400, schools: 8 }
+    },
+    {
+      id: 8,
+      title: "Food Security Initiative: Feeding 1,500 Families",
+      excerpt: "Our comprehensive food security program now supports 1,500 families with monthly food packages.",
+      content: "We expanded our food security initiative to support 1,500 families with monthly food packages. Each package contains essential items including grains, legumes, oil, and vegetables. Families receive support for 12 months, helping them achieve long-term food security and stability.",
+      category: "food",
+      image: "/image/food5.jpeg",
+      author: "Meera Patel",
+      date: "Oct 5, 2024",
+      readTime: "7 min read",
+      featured: true,
+      stats: { families: 15000, months_support: 12 }
+    },
+    {
+      id: 9,
       title: "Warmth in Winter: Clothing Drive Brings Smiles to 500 Children",
       excerpt: "Our winter clothing drive distributed warm clothes, blankets, and essential items to underprivileged children across 5 communities.",
+      content: "As winter approached, we organized a comprehensive clothing drive to help underprivileged children stay warm. With contributions from generous donors, we collected and distributed 2000 items including warm clothes, blankets, and jackets to 500 children across 5 communities.",
       category: "cloth",
-      image: "/image/thirdimage.jpeg",
+      image: "/image/cloth1.jpeg",
       author: "Anjali Desai",
       date: "Nov 5, 2024",
       readTime: "6 min read",
@@ -150,70 +229,43 @@ export default function BlogPage() {
       stats: { children: 500, items: 2000 }
     },
     {
-      id: 4,
-      title: "Empowering Through Education: Scholarship Program Launch",
-      excerpt: "We're proud to announce our new scholarship program that will support 50 underprivileged students with full educational expenses.",
-      category: "education",
-      image: "/image/WhatsApp Image 2025-11-16 at 12.34.02 AM.jpeg",
-      author: "Vikram Singh",
-      date: "Nov 3, 2024",
-      readTime: "7 min read",
-      stats: { students: 50, scholarships: "Full" }
-    },
-    {
-      id: 5,
-      title: "Community Kitchen: Serving Fresh Meals Daily",
-      excerpt: "Our community kitchen now operates 7 days a week, serving fresh, hot meals to daily wage workers and homeless individuals.",
-      category: "food",
-      image: "/image/WhatsApp Image 2025-11-16 at 12.35.17 AM.jpeg",
-      author: "Meera Patel",
-      date: "Oct 28, 2024",
-      readTime: "5 min read",
-      stats: { meals: 300, daily: "Yes" }
-    },
-    {
-      id: 6,
-      title: "Blood Heroes: Meet the Regular Donors Who Save Lives",
-      excerpt: "We spotlight our dedicated blood donors who have been donating regularly for years, saving countless lives in the process.",
-      category: "blood",
-      image: "/image/WhatsApp Image 2025-11-16 at 12.34.01 AM.jpeg",
-      author: "Dr. Amit Kumar",
-      date: "Oct 25, 2024",
-      readTime: "8 min read",
-      stats: { donors: 25, donations: 150 }
-    },
-    {
-      id: 7,
-      title: "Back to School: Distribution of School Supplies to 300 Students",
-      excerpt: "Starting the new academic year right with books, bags, stationery, and uniforms for children from low-income families.",
-      category: "education",
-      image: "/image/WhatsApp Image 2025-11-16 at 12.35.17 AM.jpeg",
-      author: "Neha Gupta",
-      date: "Oct 20, 2024",
-      readTime: "4 min read",
-      stats: { students: 300, supplies: 1500 }
-    },
-    {
-      id: 8,
-      title: "Healthcare for All: Free Medical Camp Benefits 400 Patients",
-      excerpt: "Our free health checkup camp provided consultations, medicines, and diagnostic tests to underserved communities.",
-      category: "health",
-      image: "/image/WhatsApp Image 2025-11-16 at 12.34.02 AM.jpeg",
-      author: "Dr. Sunita Rao",
-      date: "Oct 18, 2024",
-      readTime: "6 min read",
-      stats: { patients: 400, checkups: "Free" }
-    },
-    {
-      id: 9,
-      title: "Clothing with Dignity: Corporate Partnership Drives Change",
-      excerpt: "Our partnership with local businesses brought in 3000 pieces of clothing, distributed with respect and care to those in need.",
+      id: 10,
+      title: "Winter Clothing Initiative Breaks Records",
+      excerpt: "Our winter clothing drive exceeded expectations, collecting and distributing 8000 pieces of clothing.",
+      content: "This year's winter clothing initiative surpassed all expectations and broke previous records. Community members, corporate partners, and volunteers contributed over 8000 pieces of clothing. We distributed items to homeless shelters, orphanages, and underprivileged communities across the region.",
       category: "cloth",
-      image: "/image/firstimage.jpeg",
+      image: "/image/cloth2.jpeg",
       author: "Karan Malhotra",
-      date: "Oct 15, 2024",
+      date: "Oct 18, 2024",
+      readTime: "7 min read",
+      featured: true,
+      stats: { pieces: 8000, communities: 12 }
+    },
+    {
+      id: 11,
+      title: "Corporate Clothing Drive: Sustainable Fashion Donation",
+      excerpt: "Local businesses unite to provide 5000 pieces of clothing in our sustainable donation drive.",
+      content: "We partnered with 20 local businesses to organize a sustainable clothing drive. Businesses donated surplus inventory while customers contributed gently used clothing. The result: 5000 pieces of quality clothing distributed to families in need with dignity and respect.",
+      category: "cloth",
+      image: "/image/cloth3.jpeg",
+      author: "Anjali Desai",
+      date: "Oct 10, 2024",
       readTime: "5 min read",
-      stats: { pieces: 3000, families: 750 }
+      featured: false,
+      stats: { businesses: 20, pieces: 5000 }
+    },
+    {
+      id: 12,
+      title: "Children's Clothing Store Opens: A Gift That Keeps Giving",
+      excerpt: "Our new store provides free and affordable clothing for underprivileged children.",
+      content: "We opened a community clothing store dedicated to children's clothing and accessories. Donations are processed, cleaned, and made available at minimal cost. This sustainable model ensures continuous support while maintaining dignity for families who shop with us.",
+      category: "cloth",
+      image: "/image/cloth4.jpeg",
+      author: "Karan Malhotra",
+      date: "Oct 2, 2024",
+      readTime: "6 min read",
+      featured: false,
+      stats: { store_location: 1, monthly_customers: 500 }
     }
   ];
 
@@ -227,10 +279,10 @@ export default function BlogPage() {
   const featuredPosts = blogPosts.filter(post => post.featured);
 
   const impactStats = [
-    { icon: Users, value: "10,000+", label: "Lives Impacted", color: "text-[#94231E]" },
-    { icon: Droplet, value: "500+", label: "Blood Units", color: "text-red-600" },
-    { icon: UtensilsCrossed, value: "50,000+", label: "Meals Served", color: "text-orange-600" },
-    { icon: Shirt, value: "5,000+", label: "Clothes Donated", color: "text-blue-600" }
+    { icon: Users, value: "50,000+", label: "Lives Impacted", color: "text-[#94231E]" },
+    { icon: Droplet, value: "2,500+", label: "Blood Units Collected", color: "text-red-600" },
+    { icon: UtensilsCrossed, value: "100,000+", label: "Meals Distributed", color: "text-orange-600" },
+    { icon: Shirt, value: "35,000+", label: "Clothes Donated", color: "text-blue-600" }
   ];
 
   return (
@@ -337,12 +389,12 @@ export default function BlogPage() {
 
       {/* Featured Posts */}
       {selectedCategory === "all" && !searchQuery && (
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-white" key="featured-posts">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               variants={fadeInUp}
               className="mb-8"
             >
@@ -357,7 +409,7 @@ export default function BlogPage() {
               <motion.article
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 variants={scaleIn}
                 className="lg:row-span-2 bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow group"
               >
@@ -398,10 +450,7 @@ export default function BlogPage() {
                         {featuredPosts[0].author}
                       </span>
                     </div>
-                    <Button variant="primary" size="small">
-                      Read More
-                      <ArrowRight className="inline-block ml-1 w-4 h-4" />
-                    </Button>
+                  
                   </div>
                 </div>
               </motion.article>
@@ -446,9 +495,7 @@ export default function BlogPage() {
                         <span className="text-xs font-medium text-gray-700">
                           By {post.author}
                         </span>
-                        <Button variant="secondary" size="small">
-                          Read More
-                        </Button>
+                    
                       </div>
                     </div>
                   </motion.article>
@@ -464,51 +511,71 @@ export default function BlogPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {filteredPosts.length > 0 ? (
             <motion.div
+              key={`${selectedCategory}-${searchQuery}`}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               variants={staggerContainer}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             >
-              {filteredPosts.map((post) => (
-                <motion.article
-                  key={post.id}
-                  variants={scaleIn}
-                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all mb-6"
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
-                      <Calendar className="w-4 h-4" />
-                      {post.date}
-                      <span className="mx-2">•</span>
-                      <Clock className="w-4 h-4" />
-                      {post.readTime}
+              {filteredPosts.map((post, index) => {
+                const isEvery4th = (index + 1) % 4 === 0;
+                
+                return (
+                  <motion.article
+                    key={post.id}
+                    variants={scaleIn}
+                    className={`bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all group ${
+                      isEvery4th ? "md:col-span-2 lg:col-span-3 lg:flex gap-6" : ""
+                    }`}
+                  >
+                    <div className={`relative overflow-hidden ${
+                      isEvery4th ? "lg:w-2/5 lg:h-96" : "h-48"
+                    }`}>
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      {isEvery4th && (
+                        <div className="absolute top-4 left-4">
+                          <span className="px-4 py-2 bg-[#94231E] text-white text-sm font-bold rounded-full">
+                            Highlighted
+                          </span>
+                        </div>
+                      )}
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
-                      {post.title}
-                    </h3>
-                    <p className="text-gray-600 mb-4 line-clamp-3">
-                      {post.excerpt}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <User className="w-4 h-4 text-gray-400" />
-                        <span className="text-sm text-gray-700">{post.author}</span>
+                    <div className={`p-6 flex flex-col justify-center ${
+                      isEvery4th ? "lg:w-3/5" : ""
+                    }`}>
+                      <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+                        <Calendar className="w-4 h-4" />
+                        {post.date}
+                        <span className="mx-2">•</span>
+                        <Clock className="w-4 h-4" />
+                        {post.readTime}
                       </div>
-                      <Button variant="secondary" size="small" className="text-sm">
-                        Read More
-                        <ArrowRight className="inline-block ml-1 w-4 h-4" />
-                      </Button>
+                      <h3 className={`font-bold text-gray-900 mb-3 group-hover:text-[#94231E] transition-colors ${
+                        isEvery4th ? "text-2xl md:text-3xl" : "text-xl line-clamp-2"
+                      }`}>
+                        {post.title}
+                      </h3>
+                      <p className={`text-gray-600 mb-4 ${
+                        isEvery4th ? "line-clamp-4 text-base" : "line-clamp-3 text-sm"
+                      }`}>
+                        {post.excerpt}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <User className="w-4 h-4 text-gray-400" />
+                          <span className="text-sm text-gray-700">{post.author}</span>
+                        </div>
+                   
+                      </div>
                     </div>
-                  </div>
-                </motion.article>
-              ))}
+                  </motion.article>
+                );
+              })}
             </motion.div>
           ) : (
             <motion.div

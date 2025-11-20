@@ -19,7 +19,13 @@ import {
   UserPlus,
   DollarSign,
   IndianRupee,
-  Award
+  Award,
+  Share2,
+  MessageCircle,
+  Mail,
+  Facebook,
+  Twitter,
+  Linkedin
 } from "lucide-react";
 import Link from "next/link";
 import Footer from "../components/footer/Footer"; // Import the Footer componen
@@ -112,11 +118,48 @@ export default function DonationPage() {
   const [selectedAmount, setSelectedAmount] = useState(null);
   const [customAmount, setCustomAmount] = useState("");
   const [donationType, setDonationType] = useState("online");
+  const [showShareMenu, setShowShareMenu] = useState(false);
+  const [shareSuccess, setShareSuccess] = useState(false);
 
   const copyToClipboard = (text, field) => {
     navigator.clipboard.writeText(text);
     setCopiedField(field);
     setTimeout(() => setCopiedField(null), 2000);
+  };
+
+  const shareQRCode = (platform) => {
+    const shareText = "Help us save lives! Donate to MAAPA Foundation through this QR code. Support blood donation camps, food distribution, and clothing drives. Every rupee counts! 🤝❤️";
+    const siteUrl = typeof window !== 'undefined' ? window.location.origin : '';
+    
+    const shareLinks = {
+      whatsapp: `https://wa.me/?text=${encodeURIComponent(shareText + " " + siteUrl + "/donate")}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(siteUrl + "/donate")}&quote=${encodeURIComponent(shareText)}`,
+      twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(siteUrl + "/donate")}`,
+      email: `mailto:?subject=Support MAAPA Foundation&body=${encodeURIComponent(shareText + "\n\nVisit: " + siteUrl + "/donate")}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(siteUrl + "/donate")}`
+    };
+
+    if (platform && shareLinks[platform]) {
+      window.open(shareLinks[platform], '_blank', 'width=600,height=400');
+      setShowShareMenu(false);
+      setShareSuccess(true);
+      setTimeout(() => setShareSuccess(false), 2000);
+    }
+  };
+
+  const handleWebShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Donate to MAAPA Foundation',
+          text: 'Help us save lives! Support blood donation camps, food distribution, and clothing drives.',
+          url: typeof window !== 'undefined' ? window.location.origin + '/donate' : ''
+        });
+        setShowShareMenu(false);
+      } catch (err) {
+        console.log('Share cancelled or error:', err);
+      }
+    }
   };
 
   const donationAmounts = [500, 1000, 2500, 5000, 10000];
@@ -166,124 +209,12 @@ export default function DonationPage() {
 
   return (
     <div className="bg-white">
-      {/* Hero Section */}
-      <section className="mt-8 relative bg-gradient-to-br from-[#94231E] to-[#6B1915] text-white py-16 md:py-24 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMSI+PHBhdGggZD0iTTM2IDM0djItaDJ2LTJoLTJ6bTAgNGgtMnYyaDJ2LTJ6bTAtOGgydi0yaC0ydjJ6bS00IDB2Mmgydi0yaC0yem0wIDRoMnYtMmgtMnYyem0wIDRoMnYtMmgtMnYyem0tNCA0aDJ2LTJoLTJ2MnptOC04aDJ2LTJoLTJ2MnptLTQgMGgydi0yaC0ydjJ6bTQgNGgydi0yaC0ydjJ6bS00IDBoMnYtMmgtMnYyem00LThoMnYtMmgtMnYyem0tOCA0aDJ2LTJoLTJ2MnoiLz48L2c+PC9nPjwvc3ZnPg==')]"></div>
-        </div>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full mb-6 backdrop-blur-sm">
-              <Heart className="w-10 h-10 text-white" fill="currentColor" />
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6">
-              Your Generosity Changes Lives
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8">
-              Every contribution brings hope, dignity, and opportunity to those who need it most
-            </p>
-          </motion.div>
-        </div>
-      </section>
+    
 
-      {/* Why We Need Your Support */}
-      <section className="py-16 md:py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="text-center mb-12 md:mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#94231E] mb-4">
-              Why We Need Your Support
-            </h2>
-            <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-              Your donations directly fund our programs and help us reach more people in need
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-12"
-          >
-            {whyDonate.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group"
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={item.image} 
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#94231E]/80 to-transparent"></div>
-                  </div>
-                  <div className="p-6">
-                    <div className="inline-flex items-center justify-center w-12 h-12 bg-[#94231E]/10 rounded-full mb-3 -mt-8 relative">
-                      <Icon className="w-6 h-6 text-[#94231E]" />
-                    </div>
-                    <h3 className="text-xl font-bold text-[#94231E] mb-3">
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-
-          {/* Impact Stats */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
-          >
-            {impactStats.map((stat, index) => {
-              const Icon = stat.icon;
-              return (
-                <motion.div
-                  key={index}
-                  variants={scaleIn}
-                  className="bg-white border-2 border-[#94231E]/20 p-4 md:p-6 rounded-xl text-center hover:border-[#94231E] transition-colors"
-                >
-                  <Icon className="w-8 h-8 md:w-10 md:h-10 text-[#94231E] mx-auto mb-2" />
-                  <p className="text-xl md:text-2xl font-bold text-[#94231E] mb-1">
-                    {stat.amount}
-                  </p>
-                  <p className="text-sm font-semibold text-gray-800 mb-1">
-                    {stat.value}
-                  </p>
-                  <p className="text-xs text-gray-600">
-                    {stat.description}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
-      </section>
+     
 
       {/* Donation Type Selector */}
-      <section className="py-12 bg-white border-b border-gray-200">
+      <section className="py-12 bg-white border-b border-gray-200 mt-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-2xl mx-auto">
             <motion.button
@@ -340,73 +271,7 @@ export default function DonationPage() {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-                {/* Left: Amount Selection */}
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#94231E] mb-6">
-                    Select Donation Amount
-                  </h3>
-                  
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    {donationAmounts.map((amount) => (
-                      <motion.button
-                        key={amount}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => {
-                          setSelectedAmount(amount);
-                          setCustomAmount("");
-                        }}
-                        className={`py-4 px-6 rounded-xl font-bold text-lg transition-all ${
-                          selectedAmount === amount
-                            ? "bg-[#94231E] text-white shadow-lg"
-                            : "bg-gray-100 text-gray-700 hover:bg-gray-200 border-2 border-gray-200"
-                        }`}
-                      >
-                        ₹{amount.toLocaleString()}
-                      </motion.button>
-                    ))}
-                  </div>
-
-                  <div className="mb-6">
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Or Enter Custom Amount
-                    </label>
-                    <div className="relative">
-                      <IndianRupee className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                      <input
-                        type="number"
-                        value={customAmount}
-                        onChange={(e) => {
-                          setCustomAmount(e.target.value);
-                          setSelectedAmount(null);
-                        }}
-                        placeholder="Enter amount"
-                        className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#94231E] focus:outline-none text-lg"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="bg-[#94231E]/5 border-2 border-[#94231E]/20 rounded-xl p-6 mb-6">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Shield className="w-6 h-6 text-[#94231E]" />
-                      <h4 className="font-bold text-[#94231E]">100% Secure</h4>
-                    </div>
-                    <p className="text-sm text-gray-600">
-                      Your donation is secure and will be used to directly support our programs
-                    </p>
-                  </div>
-
-                  <Button 
-                    variant="primary" 
-                    size="large" 
-                    className="w-full text-xl py-4"
-                    disabled={!selectedAmount && !customAmount}
-                  >
-                    Proceed to Payment
-                    <ArrowRight className="inline-block ml-2 w-6 h-6" />
-                  </Button>
-                </div>
-
+           
                 {/* Right: QR Code & UPI */}
                 <div>
                   <h3 className="text-2xl md:text-3xl font-bold text-[#94231E] mb-6">
@@ -422,9 +287,86 @@ export default function DonationPage() {
                           className="w-full h-full object-contain"
                         />
                       </div>
-                      <p className="text-center text-sm text-gray-600 font-medium">
-                        Scan this QR code with any UPI app
-                      </p>
+                      <div className="flex flex-col items-center gap-3 mb-3">
+                        <p className="text-center text-sm text-gray-600 font-medium">
+                          Scan this QR code with any UPI app
+                        </p>
+                        <div className="relative">
+                          <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => setShowShareMenu(!showShareMenu)}
+                            className="flex items-center gap-2 px-4 py-2 bg-[#94231E] text-white rounded-full font-semibold hover:bg-[#B5423D] transition-colors"
+                          >
+                            <Share2 className="w-4 h-4" />
+                            Share QR Code
+                          </motion.button>
+
+                          {showShareMenu && (
+                            <motion.div
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -10 }}
+                              className="absolute top-full mt-2 right-0 bg-white rounded-xl shadow-xl border border-gray-200 py-2 z-50 min-w-48"
+                            >
+                              <button
+                                onClick={() => shareQRCode('whatsapp')}
+                                className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors text-left"
+                              >
+                                <MessageCircle className="w-5 h-5 text-green-500" />
+                                <span className="font-medium text-gray-700">WhatsApp</span>
+                              </button>
+                              <button
+                                onClick={() => shareQRCode('facebook')}
+                                className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors text-left"
+                              >
+                                <Facebook className="w-5 h-5 text-blue-600" />
+                                <span className="font-medium text-gray-700">Facebook</span>
+                              </button>
+                              <button
+                                onClick={() => shareQRCode('twitter')}
+                                className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors text-left"
+                              >
+                                <Twitter className="w-5 h-5 text-blue-400" />
+                                <span className="font-medium text-gray-700">Twitter</span>
+                              </button>
+                              <button
+                                onClick={() => shareQRCode('linkedin')}
+                                className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors text-left"
+                              >
+                                <Linkedin className="w-5 h-5 text-blue-700" />
+                                <span className="font-medium text-gray-700">LinkedIn</span>
+                              </button>
+                              <button
+                                onClick={() => shareQRCode('email')}
+                                className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors text-left border-t border-gray-200"
+                              >
+                                <Mail className="w-5 h-5 text-gray-600" />
+                                <span className="font-medium text-gray-700">Email</span>
+                              </button>
+                              {navigator.share && (
+                                <button
+                                  onClick={handleWebShare}
+                                  className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors text-left border-t border-gray-200"
+                                >
+                                  <Share2 className="w-5 h-5 text-purple-600" />
+                                  <span className="font-medium text-gray-700">More Options</span>
+                                </button>
+                              )}
+                            </motion.div>
+                          )}
+                        </div>
+                      </div>
+                      {shareSuccess && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className="text-center text-sm text-green-600 font-medium"
+                        >
+                          ✓ Shared successfully!
+                        </motion.div>
+                      )}
                     </div>
 
                     <div className="space-y-3">
@@ -725,108 +667,7 @@ export default function DonationPage() {
         </motion.section>
       )}
 
-      {/* Other Ways to Help */}
-      <section className="py-16 md:py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#94231E] mb-4">
-              Other Ways to Contribute
-            </h2>
-            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-              Can not donate money right now? You can still make a difference!
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-          >
-            <motion.div variants={fadeInUp} className="bg-white rounded-xl shadow-lg overflow-hidden group">
-              <div className="relative h-40 overflow-hidden">
-                <img 
-                  src="/image/thirdimage.jpeg" 
-                  alt="Donate Goods"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-[#94231E]/40"></div>
-              </div>
-              <div className="p-6 md:p-8">
-                <div className="w-16 h-16 bg-[#94231E] rounded-full flex items-center justify-center mb-4 -mt-12 relative">
-                  <Gift className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-[#94231E] mb-3">
-                  Donate Goods
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Contribute clothes, food items, or other essential supplies directly
-                </p>
-                <Button variant="secondary" size="medium">
-                  Learn More
-                </Button>
-              </div>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="bg-white rounded-xl shadow-lg overflow-hidden group">
-              <div className="relative h-40 overflow-hidden">
-                <img 
-                  src="/image/firstimage.jpeg" 
-                  alt="Spread Awareness"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-[#94231E]/40"></div>
-              </div>
-              <div className="p-6 md:p-8">
-                <div className="w-16 h-16 bg-[#94231E] rounded-full flex items-center justify-center mb-4 -mt-12 relative">
-                  <Users className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-[#94231E] mb-3">
-                  Spread Awareness
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Share our mission on social media and help us reach more people
-                </p>
-                <Button variant="secondary" size="medium">
-                  Share Now
-                </Button>
-              </div>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="bg-white rounded-xl shadow-lg overflow-hidden group">
-              <div className="relative h-40 overflow-hidden">
-                <img 
-                  src="/image/secondimage.jpeg" 
-                  alt="Corporate Partnership"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-[#94231E]/40"></div>
-              </div>
-              <div className="p-6 md:p-8">
-                <div className="w-16 h-16 bg-[#94231E] rounded-full flex items-center justify-center mb-4 -mt-12 relative">
-                  <Heart className="w-8 h-8 text-white" fill="currentColor" />
-                </div>
-                <h3 className="text-xl font-bold text-[#94231E] mb-3">
-                  Corporate Partnership
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Partner with us for CSR activities and employee engagement programs
-                </p>
-                <Button variant="secondary" size="medium">
-                  Get in Touch
-                </Button>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+   
 
       {/* Tax Benefits */}
       <section className="py-12 md:py-16 bg-white border-t border-gray-200">
@@ -857,7 +698,7 @@ export default function DonationPage() {
         </div>
       </section>
 
-      {/* Testimonials */}
+       {/* Testimonials */}
       <section className="py-16 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -910,13 +751,7 @@ export default function DonationPage() {
                 variants={fadeInUp}
                 className="bg-white rounded-xl shadow-lg overflow-hidden"
               >
-                <div className="h-32 overflow-hidden">
-                  <img 
-                    src={testimonial.image} 
-                    alt={testimonial.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+               
                 <div className="p-6">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-14 h-14 bg-[#94231E]/10 rounded-full flex items-center justify-center -mt-10 relative border-4 border-white">

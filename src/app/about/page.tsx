@@ -149,7 +149,7 @@ export default function AboutUs() {
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/image/firstimage.jpeg"
+                  src="/image/thumbnail.jpeg"
                   alt="MAAPA Foundation Story"
                   className="w-full h-[400px] md:h-[500px] object-cover"
                 />
@@ -242,17 +242,13 @@ export default function AboutUs() {
                 ))}
               </div>
 
-              <div className="mt-8">
-                <Button variant="primary" size="large">
-                  Support Our Work
-                </Button>
-              </div>
+          
             </div>
 
             <div className="relative order-1 md:order-2">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/image/secondimage.jpeg"
+                  src="/image/secindimag.jpeg"
                   alt="MAAPA Foundation Activities"
                   className="w-full h-[400px] md:h-[500px] object-cover"
                 />

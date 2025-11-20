@@ -153,9 +153,7 @@ export default function HomePageCarousel() {
                 <Link href="/donate">Donate Now</Link>
               </Button>
 
-              <Button variant="secondary" size="large">
-                <Link href="/donate">Learn More</Link>
-              </Button>
+              
             </div>
           </div>
         </div>

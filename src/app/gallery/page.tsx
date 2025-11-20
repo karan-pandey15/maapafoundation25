@@ -33,19 +33,17 @@ const events: Event[] = [
     shortDesc: "Saving lives, one drop at a time",
     color: "#DC2626",
     stats: [
-      { label: "Blood Units Collected", value: "100+" },
+      { label: "Blood Units Donated", value: "1000+" },
       { label: "Lives Impacted", value: "500+" },
       { label: "Camps Organized", value: "20+" },
     ],
     images: [
-      { id: 1, src: "/image/blood1.jpeg", alt: "Blood Camp 1", event: "blood" },
-      { id: 2, src: "/image/blood2.jpeg", alt: "Blood Camp 2", event: "blood" },
+      { id: 1, src: "/image/blood.jpeg", alt: "Blood Camp 1", event: "blood" },
+      { id: 2, src: "/image/blood4.jpeg", alt: "Blood Camp 2", event: "blood" },
       { id: 3, src: "/image/blood3.jpeg", alt: "Blood Camp 3", event: "blood" },
-      { id: 4, src: "/image/blood4.jpeg", alt: "Blood Camp 4", event: "blood" },
-      { id: 5, src: "/image/blood5.jpeg", alt: "Blood Camp 5", event: "blood" },
-      { id: 6, src: "/image/blood6.jpeg", alt: "Blood Camp 6", event: "blood" },
-      { id: 7, src: "/image/blood7.jpeg", alt: "Blood Camp 7", event: "blood" },
-    ],
+      { id: 4, src: "/image/firstimage.jpeg", alt: "Blood Camp 4", event: "blood" },
+      { id: 5, src: "/image/secondimage.jpeg", alt: "Blood Camp 5", event: "blood" },
+       ],
   },
 
   {
@@ -120,28 +118,23 @@ const events: Event[] = [
 const videos = [
   {
     id: 1,
-    title: "Blood Donation Camp",
-    thumbnail: "/image/thumbnail.jpeg",
-    video: "/image/video1.mp4",
+    title: "Food Donation Camp",
+    thumbnail: "/image/food1.jpeg",
+    video: "/image/video4.mp4",
   },
   {
     id: 2,
-    title: "Food Distribution",
-    thumbnail: "/image/thumbnail2.jpeg",
+    title: "Cloth Distribution",
+    thumbnail: "/image/cloth2.jpeg",
     video: "/image/video2.mp4",
   },
   {
     id: 3,
     title: "Community Service",
-    thumbnail: "/image/thumbnail3.jpeg",
+    thumbnail: "/image/cloth6.jpeg",
     video: "/image/video3.mp4",
   },
-  {
-    id: 4,
-    title: "Healthcare Camp",
-    thumbnail: "/image/cloth1.jpeg",
-    video: "/image/video4.mp4",
-  },
+   
 ];
 
 export default function GalleryPage() {
@@ -214,9 +207,7 @@ export default function GalleryPage() {
       <section className="py-20 bg-black text-white">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold">Experience Our Work</h2>
-          <p className="text-xl text-gray-300">
-            Instagram Reels Highlights - Watch our impact
-          </p>
+           
         </div>
 
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
