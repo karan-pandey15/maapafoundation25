@@ -73,7 +73,7 @@ const fadeInUp = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0, 0, 0.58, 1] }
+    transition: { duration: 0.6, ease: "easeOut" }
   }
 };
 
@@ -82,7 +82,7 @@ const fadeInLeft = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.7, ease: [0, 0, 0.58, 1] }
+    transition: { duration: 0.7, ease: "easeOut" }
   }
 };
 
@@ -91,7 +91,7 @@ const fadeInRight = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.7, ease: [0, 0, 0.58, 1] }
+    transition: { duration: 0.7, ease: "easeOut" }
   }
 };
 
@@ -230,12 +230,11 @@ export default function AboutUs() {
                 </p>
               </div>
               <div className="mt-8 flex flex-wrap gap-4">
-                <Button variant="primary" size="large">
                 <Link href="/donate">
+                  <Button variant="primary" size="large">
                     Join Our Mission
+                  </Button>
                 </Link>
-                </Button>
-            
               </div>
             </motion.div>
           </div>
@@ -458,17 +457,16 @@ export default function AboutUs() {
               Every contribution, big or small, helps us create lasting change in the lives of those who need it most.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="secondary" size="large" className="bg-white text-[#94231E] hover:bg-gray-100">
               <Link href="/contactus">
-                 Become a Volunteer
+                <Button variant="secondary" size="large" className="bg-white text-[#94231E] hover:bg-gray-100">
+                  Become a Volunteer
+                </Button>
               </Link>
-              </Button>
-              <Button variant="primary" size="large" className="bg-white/20 border-white text-white hover:bg-white/30">
-              
-                    <Link href="/donate">
+              <Link href="/donate">
+                <Button variant="primary" size="large" className="bg-white/20 border-white text-white hover:bg-white/30">
                   Make a Donation 
+                </Button>
               </Link>
-              </Button>
             </div>
           </motion.div>
         </div>
