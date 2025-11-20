@@ -14,6 +14,7 @@ import {
   Clock,
   Users
 } from "lucide-react";
+import Link from "next/link";
 import Footer from "../components/footer/Footer"
 // Button Component
 const Button = ({
@@ -75,7 +76,7 @@ const fadeInUp = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }
   }
 };
 
@@ -94,7 +95,7 @@ const scaleIn = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.5, ease: "easeOut" }
+    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }
   }
 };
 
@@ -457,7 +458,73 @@ export default function BlogPage() {
           </div>
         </section>
       )}
- 
+
+      {/* Blog Posts Grid */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {filteredPosts.length > 0 ? (
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              {filteredPosts.map((post) => (
+                <motion.article
+                  key={post.id}
+                  variants={scaleIn}
+                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all mb-6"
+                >
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+                      <Calendar className="w-4 h-4" />
+                      {post.date}
+                      <span className="mx-2">•</span>
+                      <Clock className="w-4 h-4" />
+                      {post.readTime}
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                      {post.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4 line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <User className="w-4 h-4 text-gray-400" />
+                        <span className="text-sm text-gray-700">{post.author}</span>
+                      </div>
+                      <Button variant="secondary" size="small" className="text-sm">
+                        Read More
+                        <ArrowRight className="inline-block ml-1 w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </motion.article>
+              ))}
+            </motion.div>
+          ) : (
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+              className="text-center py-12"
+            >
+              <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">No Stories Found</h3>
+              <p className="text-gray-600">Try adjusting your search or category filter.</p>
+            </motion.div>
+          )}
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-[#94231E] to-[#6B1915] text-white">
@@ -483,14 +550,18 @@ export default function BlogPage() {
                 className="bg-white text-[#94231E] hover:bg-gray-100 text-lg"
               >
                 <Heart className="inline-block mr-2 w-5 h-5" />
-                Donate Now
+                <Link href="/donate">
+                  Donate Now
+                </Link>
               </Button>
               <Button 
                 variant="primary" 
                 size="large" 
                 className="bg-white/20 border-white text-white hover:bg-white/30 text-lg"
               >
-                Become a Volunteer
+                <Link href="/contactus">
+                  Become a Volunteer
+                </Link>
               </Button>
             </div>
           </motion.div>
