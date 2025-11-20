@@ -837,16 +837,7 @@ export default function DonationPage() {
               Your generosity today becomes someones hope tomorrow. Join thousands of donors who are already making a difference.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                variant="secondary" 
-                size="large" 
-                className="bg-white text-[#94231E] hover:bg-gray-100 text-lg"
-              >
-                <Heart className="inline-block mr-2 w-5 h-5" />
-                <Link href="/donate">
-                  Donate Now
-                </Link>
-              </Button>
+             
               <Button 
                 variant="primary" 
                 size="large" 

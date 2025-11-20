@@ -74,7 +74,7 @@ const slides = [
     title: "Feed the Hungry",
     description:
       "Join us in our mission to provide nutritious meals to families in need. Every donation makes a difference.",
-    image: "/image/food1.jpeg",
+    image: "/image/banner1.jpeg",
     campaign: "Food Donation",
   },
   {
@@ -82,7 +82,7 @@ const slides = [
     title: "Clothe with Compassion",
     description:
       "Help us distribute warm clothing to those facing harsh winters. Your support brings comfort and dignity.",
-    image: "/image/thumbnail.jpeg",
+    image: "/image/banner2.jpeg",
     campaign: "Cloth Donation",
   },
   {
@@ -93,6 +93,130 @@ const slides = [
     image: "/image/blood.jpeg",
     campaign: "Blood Donation",
   },
+  
+   {
+    id: 4,
+    title: "Heal Through Medical Aid",
+    description:
+      "Support our mission to provide healthcare services to underprivileged communities. Your donation enables us to offer free medical check-ups and treatment.",
+    image: "/image/banner3.jpeg",
+    campaign: "Medical Donation",
+  },
+  
+   {
+    id: 5,
+    title: "Educate for Tomorrow",
+    description:
+      "Invest in education and help us provide quality schooling to children in need. Together, we can build brighter futures.",
+    image: "/image/banner4.jpeg",
+    campaign: "Education Donation",
+  },
+  
+   {
+    id: 6,
+    title: "Shelter with Dignity",
+    description:
+      "Help us build safe homes for homeless families. Your support provides not just shelter, but hope and stability.",
+    image: "/image/banner19.jpeg",
+    campaign: "Housing Donation",
+  },
+  
+   {
+    id: 7,
+    title: "Emergency Relief",
+    description:
+      "Be there when disaster strikes. Your quick support helps us provide immediate relief to affected communities.",
+    image: "/image/banner18.jpeg",
+    campaign: "Disaster Relief",
+  },
+  
+   {
+    id: 8,
+    title: "Care for Our Elders",
+    description:
+      "Show respect and compassion to senior citizens. Help us provide healthcare, nutrition, and companionship to our elderly community.",
+    image: "/image/banner7.jpeg",
+    campaign: "Elder Care",
+  },
+  
+   {
+    id: 9,
+    title: "Protect Our Children",
+    description:
+      "Every child deserves a safe and nurturing environment. Support our orphan care centers and give children a second chance at life.",
+    image: "/image/banner8.jpeg",
+    campaign: "Child Welfare",
+  },
+  
+   {
+    id: 10,
+    title: "Mental Health Matters",
+    description:
+      "Break the stigma and support mental health awareness. Your contribution helps us provide counseling and support services.",
+    image: "/image/banner9.jpeg",
+    campaign: "Mental Health",
+  },
+  
+   {
+    id: 11,
+    title: "Empower Through Skills",
+    description:
+      "Give vocational training to help people become self-reliant. Support our skill development programs for marginalized communities.",
+    image: "/image/banner10.jpeg",
+    campaign: "Skill Development",
+  },
+  
+   {
+    id: 12,
+    title: "Clean Water for All",
+    description:
+      "Access to clean water is a basic right. Help us build water purification systems in remote villages.",
+    image: "/image/banner11.jpeg",
+    campaign: "Water Initiative",
+  },
+  
+   {
+    id: 13,
+    title: "Environmental Action",
+    description:
+      "Join us in protecting our planet. Support environmental conservation and green initiatives for a sustainable future.",
+    image: "/image/banner12.jpeg",
+    campaign: "Environment",
+  },
+  
+   {
+    id: 14,
+    title: "Hunger-Free Communities",
+    description:
+      "Provide nutritious meals to prevent malnutrition. Your donation ensures no one goes to bed hungry.",
+    image: "/image/banner13.jpeg",
+    campaign: "Food Security",
+  },
+  
+   {
+    id: 15,
+    title: "Women Empowerment",
+    description:
+      "Support women in achieving their dreams. Help us provide training, resources, and opportunities for women's independence.",
+    image: "/image/banner14.jpeg",
+    campaign: "Women Support",
+  },
+   {
+    id: 16,
+    title: "Disability Support",
+    description:
+      "Ensure people with disabilities have equal opportunities. Support our programs for rehabilitation and inclusion.",
+    image: "/image/banner15.jpeg",
+    campaign: "Disability Care",
+  }, {
+    id: 17,
+    title: "Community Development",
+    description:
+      "Build stronger communities together. Your support helps us create sustainable programs that transform lives.",
+    image: "/image/banner16.jpeg",
+    campaign: "Community Aid",
+  },
+  
 ];
 
 export default function HomePageCarousel() {
@@ -176,21 +300,7 @@ export default function HomePageCarousel() {
         <ChevronRight className="w-6 h-6" />
       </button>
 
-      {/* Dots */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`h-2.5 sm:h-3 rounded-full transition-all duration-500 ${
-              index === currentSlide
-                ? "bg-white w-8 sm:w-12 shadow-lg"
-                : "bg-white/50 hover:bg-white/75 w-2.5 sm:w-3"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
+     
     </div>
   );
 }
