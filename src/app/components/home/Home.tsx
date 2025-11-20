@@ -5,7 +5,15 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 // Button Component
-const Button = ({
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode;
+  variant?: "primary" | "secondary";
+  size?: "small" | "medium" | "large";
+  disabled?: boolean;
+  className?: string;
+}
+
+const Button: React.FC<ButtonProps> = ({
   children,
   variant = "primary",
   size = "medium",
@@ -18,14 +26,14 @@ const Button = ({
   const baseStyles =
     "font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2";
 
-  const variants = {
+  const variants: Record<"primary" | "secondary", string> = {
     primary:
       "bg-[#94231E] text-white border border-[#94231E] hover:bg-[#B5423D] focus:ring-[#94231E]",
     secondary:
       "bg-white text-black border border-gray-300 hover:bg-gray-50 hover:border-gray-400 focus:ring-gray-500",
   };
 
-  const sizes = {
+  const sizes: Record<"small" | "medium" | "large", string> = {
     small: "py-2 px-4 text-sm rounded-full min-w-[80px]",
     medium: "py-3 px-6 text-base rounded-full min-w-[120px]",
     large: "py-3 px-8 text-lg rounded-full min-w-[140px]",
@@ -108,13 +116,13 @@ export default function HomePageCarousel() {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
-  const goToSlide = (index) => {
+  const goToSlide = (index: number) => {
     setDirection(index > currentSlide ? 1 : -1);
     setCurrentSlide(index);
   };
 
   const slideVariants = {
-    enter: (direction) => ({
+    enter: (direction: number) => ({
       x: direction > 0 ? 1000 : -1000,
       opacity: 0,
     }),
@@ -122,7 +130,7 @@ export default function HomePageCarousel() {
       x: 0,
       opacity: 1,
     },
-    exit: (direction) => ({
+    exit: (direction: number) => ({
       x: direction < 0 ? 1000 : -1000,
       opacity: 0,
     }),
@@ -135,7 +143,7 @@ export default function HomePageCarousel() {
       opacity: 1,
       transition: {
         duration: 1,
-        ease: [0.6, 0.05, 0.01, 0.9],
+        ease: "cubic-bezier(0.6, 0.05, 0.01, 0.9)",
       },
     },
   };
@@ -147,7 +155,7 @@ export default function HomePageCarousel() {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: [0.6, 0.05, 0.01, 0.9],
+        ease: "cubic-bezier(0.6, 0.05, 0.01, 0.9)",
       },
     },
   };
@@ -160,7 +168,7 @@ export default function HomePageCarousel() {
       transition: {
         duration: 0.8,
         delay: 0.2,
-        ease: [0.6, 0.05, 0.01, 0.9],
+        ease: "cubic-bezier(0.6, 0.05, 0.01, 0.9)",
       },
     },
   };
