@@ -5,15 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 // Button Component
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
-  variant?: "primary" | "secondary";
-  size?: "small" | "medium" | "large";
-  disabled?: boolean;
-  className?: string;
-}
-
-const Button: React.FC<ButtonProps> = ({
+const Button = ({
   children,
   variant = "primary",
   size = "medium",
@@ -26,14 +18,14 @@ const Button: React.FC<ButtonProps> = ({
   const baseStyles =
     "font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2";
 
-  const variants: Record<"primary" | "secondary", string> = {
+  const variants = {
     primary:
       "bg-[#94231E] text-white border border-[#94231E] hover:bg-[#B5423D] focus:ring-[#94231E]",
     secondary:
       "bg-white text-black border border-gray-300 hover:bg-gray-50 hover:border-gray-400 focus:ring-gray-500",
   };
 
-  const sizes: Record<"small" | "medium" | "large", string> = {
+  const sizes = {
     small: "py-2 px-4 text-sm rounded-full min-w-[80px]",
     medium: "py-3 px-6 text-base rounded-full min-w-[120px]",
     large: "py-3 px-8 text-lg rounded-full min-w-[140px]",
@@ -116,13 +108,13 @@ export default function HomePageCarousel() {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
-  const goToSlide = (index: number) => {
+  const goToSlide = (index) => {
     setDirection(index > currentSlide ? 1 : -1);
     setCurrentSlide(index);
   };
 
   const slideVariants = {
-    enter: (direction: number) => ({
+    enter: (direction) => ({
       x: direction > 0 ? 1000 : -1000,
       opacity: 0,
     }),
@@ -130,7 +122,7 @@ export default function HomePageCarousel() {
       x: 0,
       opacity: 1,
     },
-    exit: (direction: number) => ({
+    exit: (direction) => ({
       x: direction < 0 ? 1000 : -1000,
       opacity: 0,
     }),
@@ -226,7 +218,7 @@ export default function HomePageCarousel() {
 
           {/* Content */}
           <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 lg:px-8 text-center">
-          
+            
 
             {/* Title */}
             <motion.h1
@@ -257,15 +249,12 @@ export default function HomePageCarousel() {
             >
               <motion.div variants={individualButtonVariants}>
                 <Button variant="primary" size="large">
-                 <Link href="/donate">Donate Now</Link>
-
+                  <Link href="/donate">Donate Now</Link>
                 </Button>
               </motion.div>
               <motion.div variants={individualButtonVariants}>
                 <Button variant="secondary" size="large">
-                  
                   <Link href="/donate">Learn More</Link>
-                 
                 </Button>
               </motion.div>
             </motion.div>
