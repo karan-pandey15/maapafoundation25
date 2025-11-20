@@ -147,7 +147,7 @@ export default function Contact() {
               Get in Touch
             </h1>
             <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
-              Have a project in mind? Let's create something extraordinary together.
+              Have a project in mind? Lets create something extraordinary together.
             </p>
           </div>
         </div>
@@ -167,7 +167,7 @@ export default function Contact() {
           <div className="md:col-span-2 space-y-8">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Let's Start a Conversation
+                Let s Start a Conversation
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
                If you have to participate in any of our events, please contact us directly using the information provided below. We look forward to hearing from you soon!
@@ -240,7 +240,7 @@ export default function Contact() {
                 Send us a Message
               </h3>
               <p className="text-gray-600 mb-8">
-                Fill out the form below and we'll get back to you within 24 hours.
+                Fill out the form below and we will get back to you within 24 hours.
               </p>
 
               <div className="space-y-6">
@@ -380,7 +380,7 @@ export default function Contact() {
               Visit Our Foundation
             </h2>
             <p className="text-lg text-gray-600">
-              We'd love to meet you in person at our Noida location
+              We did love to meet you in person at our Noida location
             </p>
           </div>
           
@@ -409,7 +409,7 @@ export default function Contact() {
                 Message Sent Successfully!
               </h3>
               <p className="text-gray-600 mb-8">
-                Thank you for reaching out. We've received your message and will get back to you within 24 hours.
+                Thank you for reaching out. We have received your message and will get back to you within 24 hours.
               </p>
               <button
                 onClick={() => setShowSuccessModal(false)}

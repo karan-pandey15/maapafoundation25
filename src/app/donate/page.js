@@ -585,7 +585,7 @@ export default function DonationPage() {
               <div className="text-center">
                 <Button variant="primary" size="large">
                   <Wallet className="inline-block mr-2 w-5 h-5" />
-                  I've Completed the Transfer
+                  I have Completed the Transfer
                 </Button>
               </div>
             </div>
@@ -739,7 +739,7 @@ export default function DonationPage() {
               Other Ways to Contribute
             </h2>
             <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-              Can't donate money right now? You can still make a difference!
+              Can not donate money right now? You can still make a difference!
             </p>
           </motion.div>
 
@@ -848,7 +848,7 @@ export default function DonationPage() {
                     80G Tax Benefits Available
                   </h3>
                   <p className="text-gray-700 text-sm md:text-base">
-                    All donations to MAAPA Foundation are eligible for tax deduction under Section 80G of the Income Tax Act. You'll receive an official receipt for your contribution.
+                    All donations to MAAPA Foundation are eligible for tax deduction under Section 80G of the Income Tax Act. You will receive an official receipt for your contribution.
                   </p>
                 </div>
               </div>
@@ -886,7 +886,7 @@ export default function DonationPage() {
               {
                 name: "Priya Sharma",
                 role: "Monthly Donor",
-                text: "Contributing to MAAPA Foundation gives me immense satisfaction. I know my money is making a real difference in people's lives.",
+                text: "Contributing to MAAPA Foundation gives me immense satisfaction. I know my money is making a real difference in peoples lives.",
                 image: "/image/WhatsApp Image 2025-11-16 at 12.34.02 AM.jpeg",
                 rating: 5
               },
@@ -900,7 +900,7 @@ export default function DonationPage() {
               {
                 name: "Anjali Desai",
                 role: "Corporate Partner",
-                text: "Our partnership with MAAPA has strengthened our CSR impact. Their transparency and dedication are commendable.",
+                text: "Our partnership wency and dediith MAAPA has strengthened our CSR impact. Their transparcation are commendable.",
                 image: "/image/WhatsApp Image 2025-11-16 at 12.34.03 AM.jpeg",
                 rating: 5
               }
@@ -933,7 +933,7 @@ export default function DonationPage() {
                     ))}
                   </div>
                   <p className="text-gray-600 text-sm italic leading-relaxed">
-                    "{testimonial.text}"
+                    {testimonial.text} 
                   </p>
                 </div>
               </motion.div>
@@ -1015,7 +1015,7 @@ export default function DonationPage() {
               Every Rupee Counts
             </h2>
             <p className="text-lg md:text-xl mb-8 text-white/90">
-              Your generosity today becomes someone's hope tomorrow. Join thousands of donors who are already making a difference.
+              Your generosity today becomes someones hope tomorrow. Join thousands of donors who are already making a difference.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 

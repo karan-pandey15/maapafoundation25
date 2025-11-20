@@ -178,7 +178,7 @@ export default function AboutUs() {
               About MAAPA Foundation
             </h1>
             <p className="text-xl sm:text-2xl md:text-3xl font-light mb-4 italic">
-              Support Who Can't Afford
+              Support Who Can not Afford
             </p>
             <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
               Empowering communities, transforming lives, and building a future where everyone has access to basic necessities and opportunities to thrive.

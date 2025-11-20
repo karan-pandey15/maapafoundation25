@@ -254,7 +254,7 @@ export default function BlogPage() {
               Stories of Impact
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8">
-              Read about the lives we've touched and the communities we've transformed
+              Read about the lives we have touched and the communities we have transformed
             </p>
           </motion.div>
         </div>
