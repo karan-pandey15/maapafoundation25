@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
 import { Heart, Users, Target, TrendingUp, Award, Calendar, MapPin, Building2, Handshake, Globe } from "lucide-react";
 import Link from "next/link";
 import Footer from "../components/footer/Footer";
@@ -67,44 +66,6 @@ const Button: React.FC<ButtonProps> = ({
   );
 };
 
-// Animation variants
-const fadeInUp = {
-  hidden: { opacity: 0, y: 60 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" }
-  }
-};
-
-const fadeInLeft = {
-  hidden: { opacity: 0, x: -60 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.7, ease: "easeOut" }
-  }
-};
-
-const fadeInRight = {
-  hidden: { opacity: 0, x: 60 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.7, ease: "easeOut" }
-  }
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
-
 export default function AboutUs() {
   const stats = [
     { icon: Users, value: "10,000+", label: "Lives Touched" },
@@ -167,13 +128,7 @@ export default function AboutUs() {
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMSI+PHBhdGggZD0iTTM2IDM0djItaDJ2LTJoLTJ6bTAgNGgtMnYyaDJ2LTJ6bTAtOGgydi0yaC0ydjJ6bS00IDB2Mmgydi0yaC0yem0wIDRoMnYtMmgtMnYyem0wIDRoMnYtMmgtMnYyem0tNCA0aDJ2LTJoLTJ2MnptOC04aDJ2LTJoLTJ2MnptLTQgMGgydi0yaC0ydjJ6bTQgNGgydi0yaC0ydjJ6bS00IDBoMnYtMmgtMnYyem00LThoMnYtMmgtMnYyem0tOCA0aDJ2LTJoLTJ2MnoiLz48L2c+PC9nPjwvc3ZnPg==')]"></div>
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="text-center max-w-4xl mx-auto"
-          >
+          <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6">
               About MAAPA Foundation
             </h1>
@@ -183,7 +138,7 @@ export default function AboutUs() {
             <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
               Empowering communities, transforming lives, and building a future where everyone has access to basic necessities and opportunities to thrive.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -191,13 +146,7 @@ export default function AboutUs() {
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeInLeft}
-              className="relative"
-            >
+            <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src="/image/firstimage.jpeg"
@@ -206,15 +155,9 @@ export default function AboutUs() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#94231E]/30 to-transparent"></div>
               </div>
-              
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeInRight}
-            >
+            <div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#94231E] mb-6">
                 How We Started
               </h2>
@@ -236,7 +179,7 @@ export default function AboutUs() {
                   </Button>
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -244,19 +187,12 @@ export default function AboutUs() {
       {/* Stats Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
-          >
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               return (
-                <motion.div
+                <div
                   key={index}
-                  variants={fadeInUp}
                   className="bg-white p-6 md:p-8 rounded-xl shadow-lg text-center hover:shadow-xl transition-shadow duration-300"
                 >
                   <div className="inline-flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-[#94231E]/10 rounded-full mb-4">
@@ -268,10 +204,10 @@ export default function AboutUs() {
                   <p className="text-sm md:text-base text-gray-600 font-medium">
                     {stat.label}
                   </p>
-                </motion.div>
+                </div>
               );
             })}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -279,13 +215,7 @@ export default function AboutUs() {
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeInLeft}
-              className="order-2 md:order-1"
-            >
+            <div className="order-2 md:order-1">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#94231E] mb-6">
                 What We Do
               </h2>
@@ -295,12 +225,8 @@ export default function AboutUs() {
               
               <div className="space-y-6">
                 {initiatives.map((initiative, index) => (
-                  <motion.div
+                  <div
                     key={index}
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
                     className="flex gap-4 items-start bg-gray-50 p-4 rounded-lg hover:bg-gray-100 transition-colors"
                   >
                     <div className="text-3xl flex-shrink-0">{initiative.icon}</div>
@@ -312,7 +238,7 @@ export default function AboutUs() {
                         {initiative.description}
                       </p>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
 
@@ -321,15 +247,9 @@ export default function AboutUs() {
                   Support Our Work
                 </Button>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeInRight}
-              className="relative order-1 md:order-2"
-            >
+            <div className="relative order-1 md:order-2">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src="/image/secondimage.jpeg"
@@ -338,8 +258,7 @@ export default function AboutUs() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#94231E]/30 to-transparent"></div>
               </div>
-             
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -347,34 +266,21 @@ export default function AboutUs() {
       {/* Our Values */}
       <section className="py-16 md:py-24 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="text-center mb-12 md:mb-16"
-          >
+          <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#94231E] mb-4">
               Our Core Values
             </h2>
             <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
               The principles that guide our mission and shape every decision we make
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
-          >
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {values.map((value, index) => {
               const Icon = value.icon;
               return (
-                <motion.div
+                <div
                   key={index}
-                  variants={fadeInUp}
                   className="bg-white p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
                 >
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-[#94231E] rounded-full mb-4">
@@ -386,23 +292,17 @@ export default function AboutUs() {
                   <p className="text-gray-600 text-sm md:text-base leading-relaxed">
                     {value.description}
                   </p>
-                </motion.div>
+                </div>
               );
             })}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Legal Information */}
       <section className="py-12 md:py-16 bg-white border-t border-gray-200">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="max-w-4xl mx-auto"
-          >
+          <div className="max-w-4xl mx-auto">
             <h3 className="text-2xl md:text-3xl font-bold text-[#94231E] mb-6 text-center">
               Legal Information
             </h3>
@@ -436,20 +336,14 @@ export default function AboutUs() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-[#94231E] to-[#6B1915] text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="text-center max-w-3xl mx-auto"
-          >
+          <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
               Join Us in Making a Difference
             </h2>
@@ -468,7 +362,7 @@ export default function AboutUs() {
                 </Button>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
       <Footer />
