@@ -109,7 +109,7 @@ export default function AboutUs() {
       description: "Distributing essential clothing to underprivileged communities"
     },
     {
-      icon: "💉",
+      icon: "🩸",
       title: "Blood Donation",
       description: "Organizing blood donation camps to save lives across communities"
     },

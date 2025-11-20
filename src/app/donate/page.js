@@ -371,13 +371,7 @@ export default function DonationPage() {
 
                     <div className="space-y-3">
                       <div className="flex items-center justify-between bg-white p-4 rounded-lg">
-                        <div className="flex items-center gap-3">
-                          <Smartphone className="w-5 h-5 text-[#94231E]" />
-                          <div>
-                            <p className="text-xs text-gray-500 font-medium">UPI ID</p>
-                            <p className="text-sm font-bold text-gray-800">8887796224</p>
-                          </div>
-                        </div>
+                         
                         <motion.button
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
@@ -392,17 +386,7 @@ export default function DonationPage() {
                         </motion.button>
                       </div>
 
-                      <div className="grid grid-cols-3 gap-2">
-                        <div className="bg-white p-2 rounded-lg flex items-center justify-center">
-                          <img src="/image/gpay.png" alt="Google Pay" className="h-8 object-contain" />
-                        </div>
-                        <div className="bg-white p-2 rounded-lg flex items-center justify-center">
-                          <img src="/image/phonepe.png" alt="PhonePe" className="h-8 object-contain" />
-                        </div>
-                        <div className="bg-white p-2 rounded-lg flex items-center justify-center">
-                          <img src="/image/paytm.png" alt="Paytm" className="h-8 object-contain" />
-                        </div>
-                      </div>
+                      
                     </div>
                   </div>
 

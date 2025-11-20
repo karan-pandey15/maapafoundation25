@@ -93,7 +93,7 @@ const events: Event[] = [
 
   {
     id: "health",
-    title: "Healthcare & Wellness",
+    title: "Covered By NewsPaper",
     description:
       "Ensuring access to quality healthcare through free medical camps and wellness programs for underserved communities.",
     shortDesc: "Healthcare as a fundamental right",
