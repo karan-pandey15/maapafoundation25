@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { X, Play } from "lucide-react";
+import { X, Play, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import Footer from "../components/footer/Footer";
 
@@ -140,6 +140,15 @@ const videos = [
 export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [selectedVideoId, setSelectedVideoId] = useState<number | null>(null);
+  const [pagination, setPagination] = useState<{ [key: string]: number }>({});
+
+  const IMAGES_PER_PAGE = 10;
+
+  const getPaginationPage = (eventId: string) => pagination[eventId] || 0;
+
+  const setPaginationPage = (eventId: string, page: number) => {
+    setPagination({ ...pagination, [eventId]: page });
+  };
 
   return (
     <div className="bg-white min-h-screen">
@@ -183,21 +192,82 @@ export default function GalleryPage() {
               ))}
             </div>
 
-            {/* IMAGES GRID */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {event.images.map((img) => (
-                <div
-                  key={img.id}
-                  className="cursor-pointer rounded-xl overflow-hidden shadow-lg hover:shadow-2xl"
-                  onClick={() => setSelectedImage(img)}
-                >
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    className="w-full h-48 object-cover hover:scale-110 duration-500"
-                  />
+            {/* IMAGES GRID WITH PAGINATION */}
+            <div>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {event.images
+                  .slice(
+                    getPaginationPage(event.id) * IMAGES_PER_PAGE,
+                    (getPaginationPage(event.id) + 1) * IMAGES_PER_PAGE
+                  )
+                  .map((img) => (
+                    <div
+                      key={img.id}
+                      className="cursor-pointer rounded-xl overflow-hidden shadow-lg hover:shadow-2xl"
+                      onClick={() => setSelectedImage(img)}
+                    >
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        className="w-full h-48 object-cover hover:scale-110 duration-500"
+                      />
+                    </div>
+                  ))}
+              </div>
+
+              {/* PAGINATION CONTROLS */}
+              {event.images.length > IMAGES_PER_PAGE && (
+                <div className="flex items-center justify-center gap-8 mt-8">
+                  <button
+                    onClick={() =>
+                      setPaginationPage(
+                        event.id,
+                        Math.max(0, getPaginationPage(event.id) - 1)
+                      )
+                    }
+                    disabled={getPaginationPage(event.id) === 0}
+                    className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+
+                  {/* PAGINATION DOTS */}
+                  <div className="flex gap-2">
+                    {Array.from({
+                      length: Math.ceil(event.images.length / IMAGES_PER_PAGE),
+                    }).map((_, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setPaginationPage(event.id, idx)}
+                        className={`w-3 h-3 rounded-full transition-all ${
+                          getPaginationPage(event.id) === idx
+                            ? "bg-[#94231E] w-8"
+                            : "bg-gray-300 hover:bg-gray-400"
+                        }`}
+                      />
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={() =>
+                      setPaginationPage(
+                        event.id,
+                        Math.min(
+                          Math.ceil(event.images.length / IMAGES_PER_PAGE) - 1,
+                          getPaginationPage(event.id) + 1
+                        )
+                      )
+                    }
+                    disabled={
+                      getPaginationPage(event.id) ===
+                      Math.ceil(event.images.length / IMAGES_PER_PAGE) - 1
+                    }
+                    className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </section>

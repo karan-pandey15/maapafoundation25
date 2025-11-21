@@ -102,12 +102,46 @@ const scaleIn = {
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [videoIndex, setVideoIndex] = useState(0);
 
   const categories = [
     { id: "all", name: "All Stories", icon: BookOpen, color: "#94231E" },
     { id: "blood", name: "Blood Donation", icon: Droplet, color: "#DC2626" },
     { id: "food", name: "Food Donation", icon: UtensilsCrossed, color: "#EA580C" },
     { id: "cloth", name: "Cloth Donation", icon: Shirt, color: "#0891B2" }
+  ];
+
+  const videos = [
+    {
+      id: 1,
+      title: "Blood Donation Camp - Life Saving Initiative",
+      description: "Watch our successful blood donation camp that collected over 200 units and potentially saved 600 lives.",
+      thumbnail: "/image/blood.jpeg",
+      video: "/image/video1.mp4",
+      category: "blood",
+      duration: "5:32",
+      views: "12.5K"
+    },
+    {
+      id: 2,
+      title: "Food Distribution Drive - Feeding Communities",
+      description: "Our comprehensive food distribution drive reaching families in need with nutritious meals and hope.",
+      thumbnail: "/image/food1.jpeg",
+      video: "/image/video2.mp4",
+      category: "food",
+      duration: "6:15",
+      views: "8.3K"
+    },
+    {
+      id: 3,
+      title: "Clothing Drive - Warmth for Winter",
+      description: "Winter clothing initiative providing warmth and dignity to underprivileged children across communities.",
+      thumbnail: "/image/cloth1.jpeg",
+      video: "/image/video3.mp4",
+      category: "cloth",
+      duration: "4:48",
+      views: "10.7K"
+    }
   ];
 
   const blogPosts = [
@@ -288,7 +322,7 @@ export default function BlogPage() {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="mt-8 relative bg-gradient-to-br from-[#94231E] to-[#6B1915] text-white py-16 md:py-24 overflow-hidden">
+      <section className="mt-12 relative bg-gradient-to-br from-[#94231E] to-[#6B1915] text-white py-16 md:py-24 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMSI+PHBhdGggZD0iTTM2IDM0djItaDJ2LTJoLTJ6bTAgNGgtMnYyaDJ2LTJ6bTAtOGgydi0yaC0ydjJ6bS00IDB2Mmgydi0yaC0yem0wIDRoMnYtMmgtMnYyem0wIDRoMnYtMmgtMnYyem0tNCA0aDJ2LTJoLTJ2MnptOC04aDJ2LTJoLTJ2MnptLTQgMGgydi0yaC0ydjJ6bTQgNGgydi0yaC0ydjJ6bS00IDBoMnYtMmgtMnYyem00LThoMnYtMmgtMnYyem0tOCA0aDJ2LTJoLTJ2MnoiLz48L2c+PC9nPjwvc3ZnPg==')]"></div>
         </div>
@@ -341,6 +375,190 @@ export default function BlogPage() {
                 </motion.div>
               );
             })}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Video Gallery Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-[#94231E] mb-4">
+              Watch Our Impact
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              See the real stories and transformations happening in our communities through these inspiring videos
+            </p>
+          </motion.div>
+
+          {/* Featured Video */}
+          <div className="grid lg:grid-cols-3 gap-8 mb-12">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+              className="lg:col-span-2"
+            >
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-black group">
+                <div className="relative w-full bg-black" style={{ paddingBottom: "56.25%" }}>
+                  <video
+                    src={videos[videoIndex].video}
+                    poster={videos[videoIndex].thumbnail}
+                    controls
+                    className="absolute inset-0 w-full h-full"
+                  />
+                </div>
+              </div>
+              <div className="mt-6">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                  {videos[videoIndex].title}
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  {videos[videoIndex].description}
+                </p>
+                <div className="flex gap-6">
+                  <span className="flex items-center gap-2 text-sm text-gray-500">
+                    <Clock className="w-4 h-4" />
+                    {videos[videoIndex].duration}
+                  </span>
+                  <span className="flex items-center gap-2 text-sm text-gray-500">
+                    <Users className="w-4 h-4" />
+                    {videos[videoIndex].views} views
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Video Thumbnails */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              className="space-y-4"
+            >
+              {videos.map((video, index) => (
+                <motion.button
+                  key={video.id}
+                  variants={fadeInUp}
+                  onClick={() => setVideoIndex(index)}
+                  className={`w-full rounded-xl overflow-hidden shadow-lg transition-all hover:shadow-xl group ${
+                    videoIndex === index ? "ring-2 ring-[#94231E]" : ""
+                  }`}
+                >
+                  <div className="relative bg-black">
+                    <div style={{ paddingBottom: "56.25%" }}>
+                      <img
+                        src={video.thumbnail}
+                        alt={video.title}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors flex items-center justify-center">
+                      <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center">
+                        <div className="w-0 h-0 border-l-6 border-l-[#94231E] border-t-4 border-t-transparent border-b-4 border-b-transparent ml-1"></div>
+                      </div>
+                    </div>
+                    <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded">
+                      {video.duration}
+                    </div>
+                  </div>
+                  <div className="p-3 bg-white text-left">
+                    <p className="text-sm font-semibold text-gray-900 group-hover:text-[#94231E] transition-colors line-clamp-2">
+                      {video.title}
+                    </p>
+                  </div>
+                </motion.button>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Video Navigation */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="flex justify-center gap-2 mb-8"
+          >
+            {videos.map((_, index) => (
+              <motion.button
+                key={index}
+                onClick={() => setVideoIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all ${
+                  videoIndex === index
+                    ? "bg-[#94231E] w-8"
+                    : "bg-gray-300 hover:bg-gray-400"
+                }`}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+              />
+            ))}
+          </motion.div>
+
+          {/* All Videos Grid */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          >
+            {videos.map((video) => (
+              <motion.div
+                key={video.id}
+                variants={scaleIn}
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow group"
+              >
+                <div className="relative bg-black overflow-hidden">
+                  <div style={{ paddingBottom: "56.25%" }}>
+                    <img
+                      src={video.thumbnail}
+                      alt={video.title}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors flex items-center justify-center">
+                    <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center group-hover:bg-[#94231E] transition-colors">
+                      <div className="w-0 h-0 border-l-8 border-l-[#94231E] border-t-5 border-t-transparent border-b-5 border-b-transparent ml-1 group-hover:border-l-white"></div>
+                    </div>
+                  </div>
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 bg-[#94231E] text-white text-xs font-bold rounded-full capitalize">
+                      {video.category}
+                    </span>
+                  </div>
+                  <div className="absolute bottom-3 right-3 bg-black/80 text-white text-xs px-2 py-1 rounded">
+                    {video.duration}
+                  </div>
+                </div>
+                <div className="p-4">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-[#94231E] transition-colors line-clamp-2">
+                    {video.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                    {video.description}
+                  </p>
+                  <div className="flex items-center justify-between text-xs text-gray-500">
+                    <span className="flex items-center gap-1">
+                      <Users className="w-3 h-3" />
+                      {video.views}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Clock className="w-3 h-3" />
+                      {video.duration}
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
@@ -466,7 +684,7 @@ export default function BlogPage() {
                     variants={scaleIn}
                     className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow group"
                   >
-                    <div className="relative h-48 overflow-hidden">
+                    <div className="relative h-58 overflow-hidden">
                       <img
                         src={post.image}
                         alt={post.title}
@@ -530,7 +748,7 @@ export default function BlogPage() {
                     }`}
                   >
                     <div className={`relative overflow-hidden ${
-                      isEvery4th ? "lg:w-2/5 lg:h-96" : "h-48"
+                      isEvery4th ? "lg:w-2/5 lg:h-96" : "h-78"
                     }`}>
                       <img
                         src={post.image}
