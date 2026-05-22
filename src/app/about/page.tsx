@@ -1,8 +1,29 @@
 "use client";
 import React from "react";
-import { Heart, Users, Target, TrendingUp, Award, Calendar, MapPin, Building2, Handshake, Globe } from "lucide-react";
+import {
+  Heart,
+  Users,
+  Target,
+  TrendingUp,
+  Award,
+  Calendar,
+  MapPin,
+  Building2,
+  Handshake,
+  Globe,
+  UtensilsCrossed,
+  GraduationCap,
+  TreePine,
+  Briefcase,
+  HeartHandshake,
+  Accessibility,
+  CloudRain,
+  Droplet,
+  type LucideIcon,
+} from "lucide-react";
 import Link from "next/link";
 import Footer from "../components/footer/Footer";
+import NgoProfileDeck from "../components/about/NgoProfileDeck";
 
 // Button Component
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -97,27 +118,68 @@ export default function AboutUs() {
     }
   ];
 
-  const initiatives = [
+  const initiatives: {
+    icon: LucideIcon;
+    title: string;
+    tagline: string;
+    description: string;
+  }[] = [
     {
-      icon: "🍽️",
-      title: "Food Security",
-      description: "Providing nutritious meals to families facing hunger and food insecurity"
+      icon: UtensilsCrossed,
+      title: "Hunger Relief",
+      tagline: "Food Distribution",
+      description:
+        "We run regular food drives and community kitchens to deliver nutritious meals and ration kits to families facing hunger and food insecurity.",
     },
     {
-      icon: "👕",
-      title: "Clothing Drive",
-      description: "Distributing essential clothing to underprivileged communities"
+      icon: GraduationCap,
+      title: "Education for Underprivileged Children",
+      tagline: "Learning & Opportunity",
+      description:
+        "Scholarships, school supplies, tuition support, and mentoring help children from low-income families stay in school and build brighter futures.",
     },
     {
-      icon: "🩸",
-      title: "Blood Donation",
-      description: "Organizing blood donation camps to save lives across communities"
+      icon: TreePine,
+      title: "Environment",
+      tagline: "Tree Plantation",
+      description:
+        "Tree plantation drives and green awareness campaigns bring cleaner neighbourhoods, teach environmental stewardship, and leave a lasting legacy for generations.",
     },
     {
-      icon: "📚",
-      title: "Education Support",
-      description: "Empowering children through educational resources and support"
-    }
+      icon: Briefcase,
+      title: "Youth Skill Development",
+      tagline: "Livelihood Training",
+      description:
+        "Vocational training, workshops, and placement support equip young people with practical skills to earn a living and become self-reliant contributors to society.",
+    },
+    {
+      icon: HeartHandshake,
+      title: "Senior Citizen Support",
+      tagline: "Care with Dignity",
+      description:
+        "Healthcare assistance, nutrition, mobility aid, and companionship programs ensure our elders receive respect, comfort, and support in their golden years.",
+    },
+    {
+      icon: Accessibility,
+      title: "Inclusive Education & Support for Divyang Children",
+      tagline: "Empowerment Program",
+      description:
+        "Special education resources, therapy support, assistive aids, and inclusive learning environments help children with disabilities thrive with confidence and dignity.",
+    },
+    {
+      icon: CloudRain,
+      title: "Disaster Relief & Emergency Response",
+      tagline: "Crisis Support",
+      description:
+        "Flood relief, emergency food kits, and heatwave response—including water and sharbat distribution—reach affected families quickly when disaster strikes.",
+    },
+    {
+      icon: Droplet,
+      title: "Blood Donation & Medical Camps",
+      tagline: "Healthcare Outreach",
+      description:
+        "Life-saving blood donation camps and free medical check-ups bring essential healthcare to communities with limited access to hospitals and specialists.",
+    },
   ];
 
   return (
@@ -133,7 +195,7 @@ export default function AboutUs() {
               About MAAPA Foundation
             </h1>
             <p className="text-xl sm:text-2xl md:text-3xl font-light mb-4 italic">
-              Support Who Can not Afford
+              Support, Who Can&apos;t Afford
             </p>
             <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
               Empowering communities, transforming lives, and building a future where everyone has access to basic necessities and opportunities to thrive.
@@ -211,50 +273,53 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* What We Do Section - Text Left, Image Right */}
+      {/* What We Do Section */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <div className="order-2 md:order-1">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-12 md:mb-16">
+            <div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#94231E] mb-6">
                 What We Do
               </h2>
-              <p className="text-base md:text-lg text-gray-700 mb-8 leading-relaxed">
-                At MAAPA Foundation, we work tirelessly to address the most pressing needs of underprivileged communities. Our multi-faceted approach ensures comprehensive support for those who need it most.
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                At MAAPA Foundation, we work tirelessly to address the most pressing needs of underprivileged communities. From hunger relief and education to disaster response and healthcare camps, our programs deliver comprehensive support where it matters most.
               </p>
-              
-              <div className="space-y-6">
-                {initiatives.map((initiative, index) => (
-                  <div
-                    key={index}
-                    className="flex gap-4 items-start bg-gray-50 p-4 rounded-lg hover:bg-gray-100 transition-colors"
-                  >
-                    <div className="text-3xl flex-shrink-0">{initiative.icon}</div>
-                    <div>
-                      <h3 className="text-lg font-bold text-[#94231E] mb-1">
-                        {initiative.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm md:text-base">
-                        {initiative.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-          
             </div>
-
-            <div className="relative order-1 md:order-2">
+            <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src="/image/secindimag.jpeg"
-                  alt="MAAPA Foundation Activities"
-                  className="w-full h-[400px] md:h-[500px] object-cover"
+                  alt="MAAPA Foundation community programs"
+                  className="w-full h-[280px] sm:h-[360px] lg:h-[400px] object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#94231E]/30 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#94231E]/40 to-transparent"></div>
               </div>
             </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+            {initiatives.map((initiative, index) => {
+              const Icon = initiative.icon;
+              return (
+                <div
+                  key={index}
+                  className="group bg-gray-50 rounded-xl p-5 md:p-6 border border-gray-100 hover:border-[#94231E]/20 hover:bg-white hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col h-full"
+                >
+                  <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-[#94231E]/10 rounded-xl mb-4 group-hover:bg-[#94231E] transition-colors duration-300">
+                    <Icon className="w-6 h-6 md:w-7 md:h-7 text-[#94231E] group-hover:text-white transition-colors duration-300" />
+                  </div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[#B5423D] mb-1">
+                    {initiative.tagline}
+                  </p>
+                  <h3 className="text-base md:text-lg font-bold text-[#94231E] mb-2 leading-snug">
+                    {initiative.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed flex-grow">
+                    {initiative.description}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -294,6 +359,8 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
+
+      <NgoProfileDeck />
 
       {/* Legal Information */}
       <section className="py-12 md:py-16 bg-white border-t border-gray-200">

@@ -10,7 +10,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Maapa Foundation",
-  description: 'Support Who Can\'t Afford'
+  description: "Support, Who Can't Afford"
 };
 
 export default function RootLayout({
