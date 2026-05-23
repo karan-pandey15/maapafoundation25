@@ -3,27 +3,19 @@ import React from "react";
 import {
   Heart,
   Users,
-  Target,
   TrendingUp,
-  Award,
   Calendar,
   MapPin,
   Building2,
   Handshake,
   Globe,
-  UtensilsCrossed,
-  GraduationCap,
-  TreePine,
-  Briefcase,
-  HeartHandshake,
-  Accessibility,
-  CloudRain,
-  Droplet,
-  type LucideIcon,
 } from "lucide-react";
 import Link from "next/link";
 import Footer from "../components/footer/Footer";
 import NgoProfileDeck from "../components/about/NgoProfileDeck";
+import InitiativeCard from "../components/about/InitiativeCard";
+import InternshipProgram from "../components/internship/InternshipProgram";
+import { initiatives } from "@/data/initiatives";
 
 // Button Component
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -93,93 +85,6 @@ export default function AboutUs() {
     { icon: Heart, value: "500+", label: "Volunteers" },
     { icon: Handshake, value: "50+", label: "Partners" },
     { icon: Globe, value: "15+", label: "Cities" }
-  ];
-
-  const values = [
-    {
-      icon: Heart,
-      title: "Compassion",
-      description: "We lead with empathy and understanding for those in need"
-    },
-    {
-      icon: Target,
-      title: "Impact",
-      description: "Every action we take is focused on creating meaningful change"
-    },
-    {
-      icon: Award,
-      title: "Integrity",
-      description: "Transparency and accountability guide everything we do"
-    },
-    {
-      icon: Users,
-      title: "Community",
-      description: "Together, we build stronger communities through collective action"
-    }
-  ];
-
-  const initiatives: {
-    icon: LucideIcon;
-    title: string;
-    tagline: string;
-    description: string;
-  }[] = [
-    {
-      icon: UtensilsCrossed,
-      title: "Hunger Relief",
-      tagline: "Food Distribution",
-      description:
-        "We run regular food drives and community kitchens to deliver nutritious meals and ration kits to families facing hunger and food insecurity.",
-    },
-    {
-      icon: GraduationCap,
-      title: "Education for Underprivileged Children",
-      tagline: "Learning & Opportunity",
-      description:
-        "Scholarships, school supplies, tuition support, and mentoring help children from low-income families stay in school and build brighter futures.",
-    },
-    {
-      icon: TreePine,
-      title: "Environment",
-      tagline: "Tree Plantation",
-      description:
-        "Tree plantation drives and green awareness campaigns bring cleaner neighbourhoods, teach environmental stewardship, and leave a lasting legacy for generations.",
-    },
-    {
-      icon: Briefcase,
-      title: "Youth Skill Development",
-      tagline: "Livelihood Training",
-      description:
-        "Vocational training, workshops, and placement support equip young people with practical skills to earn a living and become self-reliant contributors to society.",
-    },
-    {
-      icon: HeartHandshake,
-      title: "Senior Citizen Support",
-      tagline: "Care with Dignity",
-      description:
-        "Healthcare assistance, nutrition, mobility aid, and companionship programs ensure our elders receive respect, comfort, and support in their golden years.",
-    },
-    {
-      icon: Accessibility,
-      title: "Inclusive Education & Support for Divyang Children",
-      tagline: "Empowerment Program",
-      description:
-        "Special education resources, therapy support, assistive aids, and inclusive learning environments help children with disabilities thrive with confidence and dignity.",
-    },
-    {
-      icon: CloudRain,
-      title: "Disaster Relief & Emergency Response",
-      tagline: "Crisis Support",
-      description:
-        "Flood relief, emergency food kits, and heatwave response—including water and sharbat distribution—reach affected families quickly when disaster strikes.",
-    },
-    {
-      icon: Droplet,
-      title: "Blood Donation & Medical Camps",
-      tagline: "Healthcare Outreach",
-      description:
-        "Life-saving blood donation camps and free medical check-ups bring essential healthcare to communities with limited access to hospitals and specialists.",
-    },
   ];
 
   return (
@@ -282,7 +187,7 @@ export default function AboutUs() {
                 What We Do
               </h2>
               <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                At MAAPA Foundation, we work tirelessly to address the most pressing needs of underprivileged communities. From hunger relief and education to disaster response and healthcare camps, our programs deliver comprehensive support where it matters most.
+                At MAAPA Foundation we work tirelessly to address the most pressing needs of underprivileged communities. From hunger relief and education to disaster response and healthcare camps our programs deliver comprehensive support where it matters most. Tap Read More on any card to see full details and photos.
               </p>
             </div>
             <div className="relative">
@@ -297,65 +202,10 @@ export default function AboutUs() {
             </div>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
-            {initiatives.map((initiative, index) => {
-              const Icon = initiative.icon;
-              return (
-                <div
-                  key={index}
-                  className="group bg-gray-50 rounded-xl p-5 md:p-6 border border-gray-100 hover:border-[#94231E]/20 hover:bg-white hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col h-full"
-                >
-                  <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-[#94231E]/10 rounded-xl mb-4 group-hover:bg-[#94231E] transition-colors duration-300">
-                    <Icon className="w-6 h-6 md:w-7 md:h-7 text-[#94231E] group-hover:text-white transition-colors duration-300" />
-                  </div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-[#B5423D] mb-1">
-                    {initiative.tagline}
-                  </p>
-                  <h3 className="text-base md:text-lg font-bold text-[#94231E] mb-2 leading-snug">
-                    {initiative.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed flex-grow">
-                    {initiative.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Our Values */}
-      <section className="py-16 md:py-24 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#94231E] mb-4">
-              Our Core Values
-            </h2>
-            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-              The principles that guide our mission and shape every decision we make
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {values.map((value, index) => {
-              const Icon = value.icon;
-              return (
-                <div
-                  key={index}
-                  className="bg-white p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
-                >
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-[#94231E] rounded-full mb-4">
-                    <Icon className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-[#94231E] mb-3">
-                    {value.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm md:text-base leading-relaxed">
-                    {value.description}
-                  </p>
-                </div>
-              );
-            })}
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 md:gap-6">
+            {initiatives.map((initiative) => (
+              <InitiativeCard key={initiative.slug} initiative={initiative} />
+            ))}
           </div>
         </div>
       </section>
@@ -428,6 +278,9 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
+
+      <InternshipProgram />
+
       <Footer />
     </div>
   );
