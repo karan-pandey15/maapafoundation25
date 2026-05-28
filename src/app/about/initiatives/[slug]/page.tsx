@@ -95,39 +95,20 @@ export default async function InitiativeDetailPage({ params }: PageProps) {
 
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-20 md:space-y-28">
-            {program.sections.map((section, index) => {
-              const imageFirst = index % 2 === 1;
-
-              return (
-                <div
-                  key={section.heading}
-                  className={`grid items-center gap-8 lg:grid-cols-2 lg:gap-14 ${
-                    imageFirst ? "lg:[&>div:first-child]:order-2" : ""
-                  }`}
-                >
-                  <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-                    <img
-                      src={section.image}
-                      alt={section.imageAlt}
-                      className="h-[280px] w-full object-cover sm:h-[360px] lg:h-[420px]"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#94231E]/25 to-transparent" />
-                  </div>
-                  <div>
-                    <span className="mb-3 inline-block rounded-full bg-[#94231E]/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-[#94231E]">
-                      Part {index + 1}
-                    </span>
-                    <h2 className="mb-4 text-2xl font-bold text-[#94231E] md:text-3xl lg:text-4xl">
-                      {section.heading}
-                    </h2>
-                    <p className="text-base leading-relaxed text-gray-700 md:text-lg">
-                      {section.body}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
+          <div className="mx-auto max-w-3xl space-y-14 md:space-y-20">
+            {program.sections.map((section, index) => (
+              <article key={section.heading}>
+                <span className="mb-3 inline-block rounded-full bg-[#94231E]/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-[#94231E]">
+                  Part {index + 1}
+                </span>
+                <h2 className="mb-4 text-2xl font-bold text-[#94231E] md:text-3xl">
+                  {section.heading}
+                </h2>
+                <p className="text-base leading-relaxed text-gray-700 md:text-lg">
+                  {section.body}
+                </p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
