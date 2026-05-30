@@ -68,7 +68,7 @@ function addFooter(doc: jsPDF) {
   doc.setFontSize(7);
   doc.setTextColor(100, 100, 100);
   doc.text(
-    `${NGO_NAME} | ${NGO_TAGLINE} | support@maapafoundation.org | +91 9999781282`,
+    `${NGO_NAME} | ${NGO_TAGLINE} | support@maapafoundation.org | +91  8887796224`,
     PAGE_W / 2,
     PAGE_H - 12,
     { align: "center" }

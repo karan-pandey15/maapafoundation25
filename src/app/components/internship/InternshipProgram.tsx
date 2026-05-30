@@ -376,7 +376,7 @@ export default function InternshipProgram() {
                 />
               </div>
               <p className="mt-4 text-sm text-gray-500">
-                Questions? Email us at contact@maapafoundation.org or call +91 9999781282
+                Questions? Email us at contact@maapafoundation.org or call +91  8887796224
               </p>
             </div>
           </div>

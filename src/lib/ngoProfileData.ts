@@ -23,7 +23,7 @@ export const registrationDetails = [
   { label: "Status", value: "Active" },
   { label: "Registered Address", value: "B-25, Sector 2, Noida, Uttar Pradesh 201301" },
   { label: "Email", value: "support@maapafoundation.org" },
-  { label: "Phone", value: "+91 9999781282" },
+  { label: "Phone", value: "+91  8887796224" },
   { label: "Tax Benefit", value: "Donations eligible under Section 80G (as applicable)" },
 ];
 
@@ -72,7 +72,7 @@ export const partnershipProposal = {
     "Long-term funding for skill development and Divyang inclusive education programs",
   ],
   contact:
-    "Reach us at support@maapafoundation.org | +91 9999781282 | maapafoundation.org — together we can transform lives.",
+    "Reach us at support@maapafoundation.org | +91  8887796224 | maapafoundation.org — together we can transform lives.",
 };
 
 export interface NgoProgram {
