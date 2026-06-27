@@ -67,6 +67,7 @@ const Navbar = () => {
     { href: "/donate", label: "Donate" },
     { href: "/gallery", label: "Events" }, 
      { href: "/ourgallery", label: "Gallery" }, 
+     { href: "/mission", label: "Mission" },
     { href: "/contactus", label: "Contact Us" },
   ];
 
