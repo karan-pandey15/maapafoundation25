@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -38,6 +39,7 @@ const Logo: React.FC<LogoProps> = ({ size = "default" }) => {
 -------------------------------------------------------------------*/
 
 const Navbar = () => {
+  const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
@@ -93,16 +95,25 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center space-x-6">
-          {menuItems.map((item, index) => (
-            <Link
-              key={index}
-              href={item.href}
-              className="text-black font-medium text-sm transition-all duration-200 relative group"
-            >
-              {item.label}
-              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-black transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-          ))}
+          {menuItems.map((item, index) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={index}
+                href={item.href}
+                className={`relative text-sm font-medium transition-all duration-200 ${
+                  isActive ? "text-[#94231E]" : "text-black"
+                }`}
+              >
+                {item.label}
+                <span
+                  className={`absolute bottom-0 left-0 h-[2px] bg-[#94231E] transition-all duration-300 ${
+                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </Link>
+            );
+          })}
         </div>
 
         {/* RIGHT SIDE (DONATE BUTTON - DESKTOP ONLY + HAMBURGER MOBILE) */}
@@ -141,19 +152,26 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div
           ref={mobileMenuRef}
-          className="lg:hidden bg-white    transition-all duration-300"
+          className="lg:hidden bg-white transition-all duration-300"
         >
           <div className="py-3 px-4 space-y-1">
-            {menuItems.map((item, index) => (
-              <Link
-                key={index}
-                href={item.href}
-                className="block text-black hover:text-gray-600 hover:bg-gray-50 duration-200 py-3 px-4 rounded-lg font-medium text-sm"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {menuItems.map((item, index) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={index}
+                  href={item.href}
+                  className={`block rounded-lg py-3 px-4 text-sm font-medium transition duration-200 ${
+                    isActive
+                      ? "bg-[#94231E]/10 text-[#94231E]"
+                      : "text-black hover:text-gray-600 hover:bg-gray-50"
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </div>
         </div>
       )}
