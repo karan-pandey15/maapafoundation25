@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Footer from "../components/footer/Footer"
+import InitiativeCard from "../components/about/InitiativeCard";
+import { initiatives } from "@/data/initiatives";
 // Button Component
 const Button = ({
   children,
@@ -557,6 +559,52 @@ export default function BlogPage() {
                     </span>
                   </div>
                 </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* What We Do Section */}
+      <section className="py-16 md:py-24 bg-white border-t border-gray-100">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-12 md:mb-16"
+          >
+            <div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#94231E] mb-6">
+                What We Do
+              </h2>
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                At MAAPA Foundation we work tirelessly to address the most pressing needs of underprivileged communities. From hunger relief and education to disaster response and healthcare camps our programs deliver comprehensive support where it matters most. Tap Read More on any card to see full details and photos.
+              </p>
+            </div>
+            <div className="relative">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src="/image/secindimag.jpeg"
+                  alt="MAAPA Foundation community programs"
+                  className="w-full h-[280px] sm:h-[360px] lg:h-[400px] object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#94231E]/40 to-transparent"></div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 md:gap-6"
+          >
+            {initiatives.map((initiative) => (
+              <motion.div key={initiative.slug} variants={scaleIn}>
+                <InitiativeCard initiative={initiative} />
               </motion.div>
             ))}
           </motion.div>
