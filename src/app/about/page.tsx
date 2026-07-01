@@ -179,7 +179,7 @@ export default function AboutUs() {
       </section>
 
       {/* What We Do Section */}
-      <section className="py-16 md:py-24 bg-white">
+      <section id="what-we-do" className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-12 md:mb-16">
             <div>

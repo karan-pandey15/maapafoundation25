@@ -2,10 +2,21 @@
 
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import Button from "../components/Button/Button";
+
+interface SubItem {
+  href: string;
+  label: string;
+}
+
+interface MenuItem {
+  href?: string;
+  label: string;
+  subItems?: SubItem[];
+}
 
 /* ------------------------------------------------------------------
    LOGO COMPONENT (Maapa Foundation — Circular Logo)
@@ -41,7 +52,24 @@ const Logo: React.FC<LogoProps> = ({ size = "default" }) => {
 const Navbar = () => {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileSubmenuOpen, setIsMobileSubmenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      setIsMobileSubmenuOpen(false);
+    }
+  }, [isMobileMenuOpen]);
+
+  const isItemActive = (item: MenuItem) => {
+    if (item.href) {
+      return pathname === item.href;
+    }
+    if (item.subItems) {
+      return item.subItems.some((sub) => pathname === sub.href);
+    }
+    return false;
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -62,13 +90,26 @@ const Navbar = () => {
   };
 
   // UPDATED MENU ITEMS
-  const menuItems = [
+  const menuItems: MenuItem[] = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
+    {
+      label: "What We Do",
+      subItems: [
+        { href: "/about/initiatives/hunger-relief", label: "Hunger Relief" },
+        { href: "/about/initiatives/education", label: "Education for Underprivileged Children" },
+        { href: "/about/initiatives/environment", label: "Environment" },
+        { href: "/about/initiatives/youth-skills", label: "Youth Skill Development" },
+        { href: "/about/initiatives/senior-support", label: "Senior Citizen Support" },
+        { href: "/about/initiatives/divyang-support", label: "Inclusive Education & Divyang Support" },
+        { href: "/about/initiatives/disaster-relief", label: "Disaster Relief & Emergency Response" },
+        { href: "/about/initiatives/blood-medical", label: "Blood Donation & Medical Camps" },
+      ],
+    },
     { href: "/blog", label: "Blog" },
     { href: "/donate", label: "Donate" },
     { href: "/gallery", label: "Events" }, 
-     { href: "/ourgallery", label: "Gallery" }, 
+    { href: "/ourgallery", label: "Gallery" }, 
     { href: "/contactus", label: "Contact Us" },
   ];
 
@@ -95,13 +136,51 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center space-x-6">
           {menuItems.map((item, index) => {
-            const isActive = pathname === item.href;
+            const isActive = isItemActive(item);
+
+            if (item.subItems) {
+              return (
+                <div key={index} className="relative group py-2">
+                  <Link
+                    href="/about#what-we-do"
+                    className={`flex items-center gap-1 text-sm font-medium transition-all duration-200 ${
+                      isActive ? "text-[#94231E]" : "text-black hover:text-[#94231E]"
+                    }`}
+                  >
+                    {item.label}
+                    <ChevronDown className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" />
+                  </Link>
+                  {/* Dropdown Menu */}
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full mt-1 w-80 rounded-xl bg-white shadow-xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 z-50 border border-gray-100 py-3 px-2">
+                    <div className="grid gap-1">
+                      {item.subItems.map((sub, sIndex) => {
+                        const isSubActive = pathname === sub.href;
+                        return (
+                          <Link
+                            key={sIndex}
+                            href={sub.href}
+                            className={`block rounded-lg px-4 py-2.5 text-sm transition duration-200 ${
+                              isSubActive
+                                ? "bg-[#94231E]/10 text-[#94231E] font-semibold"
+                                : "text-gray-700 hover:bg-[#94231E]/5 hover:text-[#94231E]"
+                            }`}
+                          >
+                            {sub.label}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
             return (
               <Link
                 key={index}
-                href={item.href}
-                className={`relative text-sm font-medium transition-all duration-200 ${
-                  isActive ? "text-[#94231E]" : "text-black"
+                href={item.href || "#"}
+                className={`relative group text-sm font-medium transition-all duration-200 py-2 ${
+                  isActive ? "text-[#94231E]" : "text-black hover:text-[#94231E]"
                 }`}
               >
                 {item.label}
@@ -155,11 +234,58 @@ const Navbar = () => {
         >
           <div className="py-3 px-4 space-y-1">
             {menuItems.map((item, index) => {
-              const isActive = pathname === item.href;
+              const isActive = isItemActive(item);
+
+              if (item.subItems) {
+                return (
+                  <div key={index} className="space-y-1">
+                    <button
+                      onClick={() => setIsMobileSubmenuOpen(!isMobileSubmenuOpen)}
+                      className={`w-full flex items-center justify-between rounded-lg py-3 px-4 text-sm font-medium transition duration-200 ${
+                        isActive
+                          ? "bg-[#94231E]/10 text-[#94231E]"
+                          : "text-black hover:bg-gray-50"
+                      }`}
+                    >
+                      <span>{item.label}</span>
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform duration-200 ${
+                          isMobileSubmenuOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {isMobileSubmenuOpen && (
+                      <div className="pl-4 space-y-1 border-l border-gray-100 ml-4 py-1">
+                        {item.subItems.map((sub, sIndex) => {
+                          const isSubActive = pathname === sub.href;
+                          return (
+                            <Link
+                              key={sIndex}
+                              href={sub.href}
+                              className={`block rounded-lg py-2.5 px-4 text-sm transition duration-200 ${
+                                isSubActive
+                                  ? "text-[#94231E] font-semibold bg-[#94231E]/5"
+                                  : "text-gray-600 hover:text-black hover:bg-gray-50"
+                              }`}
+                              onClick={() => {
+                                setIsMobileMenuOpen(false);
+                                setIsMobileSubmenuOpen(false);
+                              }}
+                            >
+                              {sub.label}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
               return (
                 <Link
                   key={index}
-                  href={item.href}
+                  href={item.href || "#"}
                   className={`block rounded-lg py-3 px-4 text-sm font-medium transition duration-200 ${
                     isActive
                       ? "bg-[#94231E]/10 text-[#94231E]"
